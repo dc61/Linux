@@ -1,0 +1,126 @@
+------------------------------------------------Crontab----------------------------------------------
+
+Planifier l’exécution d’un programme, script sur Linux:
+modifier le fichier crontab : /etc/crontab
+crontab -l : lister les cron en cours
+minute hour day(1-31) month day(1-7) user command          |||||     *	any value ---- - ,	value list separator -----   -	range of values -----   /	step values   
+
+
+-----------------------------------------------------------------------------------------------------
+------------------------------------------=====SECURITE=====-----------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+-------------------------------------------------UFW-------------------------------------------------
+
+Commandes de base de UFW à utiliser :
+
+sudo apt-get install ufw
+sudo ufw allow ssh
+ufw enable : Cette commande permet d'activer UFW et de commencer à filtrer le trafic de réseau.
+ufw disable : Cette commande permet de désactiver UFW et de cesser de filtrer le trafic de réseau.
+
+ufw default deny : Cette commande permet de refuser tout le trafic de réseau entrant par défaut, à moins qu'il ne soit explicitement autorisé par une règle de pare-feu.
+ufw default allow : Cette commande permet d'autoriser tout le trafic de réseau entrant par défaut, à moins qu'il ne soit explicitement refusé par une règle de pare-feu.
+
+ufw allow <port>/<protocole> : Cette commande permet d'autoriser le trafic entrant sur un port particulier et avec un protocole particulier. Par exemple, pour autoriser le trafic HTTP entrant sur le port 80, vous pouvez utiliser la commande suivante : ufw allow 80/tcp
+ufw deny <port>/<protocole> : Cette commande permet de refuser le trafic entrant sur un port particulier et avec un protocole particulier. Par exemple, pour refuser le trafic FTP entrant sur le port 21, vous pouvez utiliser la commande suivante : ufw deny 21/tcp
+
+sudo ufw allow from 10.10.10.0/24 to any port 2222 : Autoriser uniquement le sous-réseau 10.10.10.0/24 à se connecter sur le port 2222
+sudo ufw allow from 10.10.10.1 to any port 2222 : Autoriser uniquement la machine 10.10.10.1 à se connecter sur le port 2222
+
+-------------------------------------------------ClamAV-------------------------------------------------
+
+ClamAV : ClamAV est un scanner de virus open source pour Linux. Il peut être utilisé pour détecter et éliminer les virus, les logiciels espions et d'autres logiciels malveillants de votre système.
+
+On Debian: sudo apt-get update && sudo apt-get install clamav clamav-daemon
+On RedHat: sudo dnf update && sudo dnf install clamav-daemon
+
+Mettre à jour ClamAV sur Linux:
+La base de données de signature de ClamAV est mise à jour automatiquement par le daemon freshclam.
+sudo systemctl stop clamav-freshclam : Pour arrêter le FreshClam, suivez simplement la commande Terminal
+sudo freshclam : Puis on utilise l’utilitaire freshclam pour se connecter, télécharger et installer les définitions virales
+sudo systemctl start clamav-freshclam : Pour relancer le service
+
+sudo clamscan --infected --recursive --remove /   : Analyser le systeme entier
+Les options :
+–infected : Imprime uniquement les fichiers infectés
+–remove : Supprime les fichiers infectés automatiquement
+–recursive : Tous les sous-répertoires de l’annuaire seront numérisés
+-r -i et enfin –bell pour beeper à chaque détection
+–move : Pour déplacer les fichiers détectés vers un dossier spécifique (quarantaine). EXEMPLE : clamscan -r --move=~/VIRUS /tmp/
+
+
+-------------------------------------------------Fail2ban-------------------------------------------------
+
+Fail2ban est un utilitaire de sécurité qui surveille les journaux du système et bloque les adresses IP suspectes qui tentent de se connecter de manière abusive.(evite les ddos). Complement : Détecter et bannir les adresses IP qui tentent de se connecter de manière répétée à un service (par exemple, SSH) en utilisant des mots de passe incorrects ou en faisant des tentatives de connexion infructueuses.
+
+sudo fail2ban-client status : afficher la liste des jails de fail2ban avec Fail2ban avec l’option status
+Status
+|- Number of jail:      4
+`- Jail list:   ban1day, nginx-limit-req, ssh-reflection, sshd
+
+Recharger la configuration, utilisez la commande reload comme ceci :
+sudo fail2ban-client reload
+Pour relancer le service fail2ban :
+sudo fail2ban-client restart
+
+Bannir une adresse IP dans une prison (jail), on utilise la commande banip de cette manière :
+fail2ban-client set <JAIL> banip <IP>
+Par exemple pour bannir l’adresse IP 1.1.1.1 dans la jail ssh :
+fail2ban-client set sshd banip 1.1.1.1
+
+Débannir une adresse IP
+fail2ban-client set <JAIL> unbanip <IP>
+Ainsi, par exemple pour retirer l’adresse IP 1.1.1.1. de la prison sshd :
+fail2ban-client set sshd unbanip 1.1.1.1 
+Débannir toutes les adresses IP
+sudo fail2ban-client unban --all
+
+Lister les adresses IP bannies
+fail2ban-client banned
+Si vous désirez afficher que les adresses IP bannies sur un jail en particulier :
+fail2ban-client get sshd banned
+
+
+-------------------------------------------------AppArmor-------------------------------------------------
+
+(Voir aussi SELinux, qui est similaire)
+AppArmor est un système de contrôle d’accès obligatoire (Mandatory Access Control) qui s’appuie sur l’interface LSM (Linux Security Modules) fournie par le noyau Linux.
+Il permet d’établir des règles et politiques d’accès aux processus, via des profiles, afin de confiner les accès systèmes.
+De ce fait, cela interdit tout accès système non désirés.
+AppArmor est donc un utilitaire important pour améliorer la sécurité de votre serveur Linux en protégeant contre les accès frauduleux via des vulnérabilités.
+
+Installez AppArmor et ses outils avec APT :
+apt install apparmor apparmor-utils apparmor-profiles apparmor-profiles-extra
+
+
+mkdir -p /etc/default/grub.d  : Apparmor est un module de noyau Linux, vous devez l’activer dans grub avec ces commandes
+Créez le fichier /etc/default/grub.d/apparmor.cfg avec le contenu suivant : GRUB_CMDLINE_LINUX_DEFAULT="$GRUB_CMDLINE_LINUX_DEFAULT apparmor=1 security=apparmor"
+Enregistrer et sortir, puis exécuter :
+update-grub
+Redemarrer le serveur
+systemctl status apparmor : Vérifier l’état du service AppArmor avec systemctl
+
+Copier les profiles “extras”
+Les paquets apparmor-profiles et apparmor-profiles-extra fournissent des profiles supplémentaires qui se trouvent dans /usr/share/apparmor/extra-profiles/.
+Vous pouvez copier l’intégralité dans le répertoire de profil AppArmor /etc/apparmor.d/ ou ne copier que ceux que vous comptez utiliser pour une installation plus “propre”.
+cp /usr/share/apparmor/extra-profiles/*/etc/apparmor.d/
+
+Vérifier l’état des profiles AppArmor
+AppArmor fonctionne avec des profiles pour chaque binaire qui établisse les politiques autorisées. Deux mode de fonctionnement par profile est possible :
+Mode complain : les violations de la politique ne seront enregistrées dans les logs et aucun blocage n’est effectué. C’est un mode d’apprentissage pour régler le profile
+Mode enforce : les opérations qui violent la politique seront bloquées
+aa-status : Pour énumérer tous les profils Apparmor chargés pour les applications et les processus et détaille leur statut (loaded., complain mode, enforce mode)
+
+Activer un profile en mode complain :
+aa-complain </chemin/binaire> : On utilise la commande aa-complain pour passer un binaire en mode plainte.
+aa-complain /usr/bin/ping : Par exemple pour passer la commande ping en mode complainte
+Activer un profile en mode enforce :
+aa-enforce </chemin/binaire>
+
+Comme vu avant, Il faut avant tout configurer un profile pour limiter les applications qui exposent le système.
+C’est à dire les applications réseaux avec des ports ouverts, celles qui exécutent des cron etc.
+Pour vous y aider, Apparmor possède la commande aa-unconfined qui liste les applications non confinés et qu’il faut en priorité configurer:
+aa-unconfined /usr/sbin/nginx
+
+-------------------------------------------------a-------------------------------------------------
