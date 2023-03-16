@@ -1,4 +1,4 @@
-#!/bin/bash
+# shellcheck shell=bash
 
 grep =         ^ : premiers caractères    $ : derniers caractères     * : certains nombre de caractères
 
