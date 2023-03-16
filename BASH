@@ -1,0 +1,4 @@
+grep =         ^ : premiers caractères    $ : derniers caractères     * : certains nombre de caractères
+
+find . -type f -name "*.txt" -exec grep -H "Linux" {} \;   ---Expliction = find pour trouver tous les fichiers texte dans le dossier et les envoyer à la commande grep pour effectuer la recherche
+awk '{print $1}' access.log | sort | uniq -c | sort -rn    ---{print $1} spécifie que nous voulons imprimer la première colonne du fichier, qui dans ce cas est l'adresse IP.
