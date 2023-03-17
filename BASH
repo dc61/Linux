@@ -1,20 +1,11 @@
 #!/bin/bash
 
-grep =       ^ : premiers caractères    $ : derniers caractères     * : certains nombre de caractères
-
-find . -type f -name "*.txt" -exec grep -H "Linux" {} \;   ---Expliction = find pour trouver tous les fichiers texte dans le dossier et les envoyer à la commande grep pour effectuer la recherche
-awk '{print $1}' access.log | sort | uniq -c | sort -rn    ---{print $1} spécifie que nous voulons imprimer la première colonne du fichier, qui dans ce cas est l'adresse IP.
-
-----------------$?------------------
-
-La variable $? contient le code de retour de la dernière commande ou fonction exécutée en Bash. Un code de retour de zéro signifie que la commande s'est terminée avec succès, tandis qu'un code de retour différent de zéro indique qu'il y a eu une erreur
 
 ----------------$#-------------------
 La variable spéciale $# en bash contient le nombre d'arguments passés à un script ou à une fonction. Par exemple, si vous avez un script appelé "mon_script.sh" qui prend deux arguments, vous pouvez utiliser la variable $# pour vérifier que le nombre d'arguments est correct. Si vous exécutez le script avec deux arguments, $# aura la valeur 2.
 
 Voici un exemple de script qui utilise $# pour vérifier si le nombre d'arguments est correct :
 
-#!/bin/bash
 
 bash
 Copy code
@@ -28,3 +19,13 @@ fi
 echo "Le premier argument est : $1"
 echo "Le deuxième argument est : $2"
 Dans cet exemple, le script vérifie si le nombre d'arguments est différent de 2 en utilisant la condition [ $# -ne 2 ]. Si c'est le cas, le script affiche un message d'erreur et quitte avec un code d'erreur (exit 1). Sinon, le script affiche les deux arguments passés.
+
+
+grep =       ^ : premiers caractères    $ : derniers caractères     * : certains nombre de caractères
+
+find . -type f -name "*.txt" -exec grep -H "Linux" {} \;   ---Expliction = find pour trouver tous les fichiers texte dans le dossier et les envoyer à la commande grep pour effectuer la recherche
+awk '{print $1}' access.log | sort | uniq -c | sort -rn    ---{print $1} spécifie que nous voulons imprimer la première colonne du fichier, qui dans ce cas est l'adresse IP.
+
+----------------$?------------------
+
+La variable $? contient le code de retour de la dernière commande ou fonction exécutée en Bash. Un code de retour de zéro signifie que la commande s'est terminée avec succès, tandis qu'un code de retour différent de zéro indique qu'il y a eu une erreur
