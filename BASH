@@ -1,5 +1,4 @@
-
-
+#!/bin/bash
 
 grep =       ^ : premiers caractères    $ : derniers caractères     * : certains nombre de caractères
 
