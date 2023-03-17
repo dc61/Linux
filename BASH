@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 
 grep =       ^ : premiers caractères    $ : derniers caractères     * : certains nombre de caractères
@@ -14,6 +14,8 @@ La variable $? contient le code de retour de la dernière commande ou fonction e
 La variable spéciale $# en bash contient le nombre d'arguments passés à un script ou à une fonction. Par exemple, si vous avez un script appelé "mon_script.sh" qui prend deux arguments, vous pouvez utiliser la variable $# pour vérifier que le nombre d'arguments est correct. Si vous exécutez le script avec deux arguments, $# aura la valeur 2.
 
 Voici un exemple de script qui utilise $# pour vérifier si le nombre d'arguments est correct :
+
+#!/bin/bash
 
 bash
 Copy code
