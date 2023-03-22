@@ -1,3 +1,32 @@
+
+
+
+
+
+Nouveau red hat = nmcli (nmcli device status) ; configuration ==> /etc/NetworkManager/system-connections/ens33.nmconnection
+-----
+Sur CentOs 7 = /etc/sysconfig/network-scripts/ifcfg-eth0
+BOOTPROTO="static"
+Ajouter les lignes suivantes :
+
+IPADDR=192.168.200.5
+NETMASK=255.255.0.0
+GATEWAY=192.168.10.1
+DNS1=192.168.40.1
+DNS2=192.168.40.2
+DOMAIN=mon-domaine.lan
+Redémarrer le service : 
+
+systemctl restart network.service
+-----
+Debian 11 = /etc/network/interfaces
+allow-hotplug ens192
+iface ens192 inet static
+  address 192.168.100.14/24
+  gateway 192.168.100.1
+  dns-nameservers 192.168.100.11 1.1.1.1
+  dns-domain it-connect.local
+
 ------------------------------------------------Crontab----------------------------------------------
 
 Planifier l’exécution d’un programme, script sur Linux:
