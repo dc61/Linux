@@ -25,7 +25,7 @@ iface ens192 inet static
   address 192.168.100.14/24
   gateway 192.168.100.1
   dns-nameservers 192.168.100.11 1.1.1.1
-  dns-domain it-connect.local
+  dns-domain test.local
 
 ------------------------------------------------Crontab----------------------------------------------
 
