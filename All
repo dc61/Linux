@@ -89,10 +89,25 @@ Changez la capacité du volume logique nommé lvtest de 10M à 30M. et la taille
 # lvreduce -L 1G -n /dev/vg1/lvm02
 # lvdisplay (Verify)
 
+----
 
+Créez un groupe de volumes et définissez 16M comme extension. Et divisé un groupe de volumes contenant 50 extensions sur le groupe de volumes lv, faites-en un système de fichiers ext4 et monté automatiquement sous /mnt/data
+En supposant que les partitions /dev/sda1 et /dev/sda2 existent déjà :
+# pvcreate /dev/sda1 /dev/sda2
+# vgcreate -s 16M vg01 /dev/sda1 /dev/sda2
+# lvcreate -l 50 -n lv01 vg01
+# mkfs.ext4 /dev/vg01/lv01
+# mkdir -p /mnt/data
+# blkid /dev/vg01/lv01
+copy the UUID of /dev/vg01/lv01 in the output of that command.
+# vim /etc/fstab
+UUID="paste the UUID of /dev/vg01/lv01 here" /mnt/data ext4 defaults 0 0
+# mount -a
 
 ----------------------------------------------------------------------------------------------------
+
 Nouveau red hat = nmcli (nmcli device status) ; configuration ==> /etc/NetworkManager/system-connections/ens33.nmconnection
+
 -----
 
 Sur CentOs 7 = /etc/sysconfig/network-scripts/ifcfg-eth0
