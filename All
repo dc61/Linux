@@ -2,7 +2,96 @@
 
 
 
+----------------------------------------------------------------------------------------------------
 
+
+
+
+
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
+RED HAT
+
+Trouvez les fichiers appartenant à Tom et copiez-les dans le catalogue : /opt/dir 
+find / -user Alice -type f -exec cp {} /opt/dir \;
+----
+
+Create une partition pour taille donnée :
+#fdisk /dev/sdb
+#n
+#+2G
+#w
+#partprobe
+#free -h
+#mkswap /dev/sdb5
+#swapon /dev/sdb5
+#free -h
+#vim /etc/fstab
+and add below line : /dev/sdb5 swap swap defaults 0 0
+
+----
+
+Créer un user Tom avec un Id de 1111 et modifier son mdp
+useradd -u 1111 -p mo3àH(Gd -m tom
+
+----
+
+Installez un serveur FTP et demandez un téléchargement anonyme à partir du catalogue /var/ftp/pub :
+# cd /etc/yum.repos.d
+# vim local.repo
+[local]
+name=local.repo
+baseurl=file:///mnt
+enabled=1
+gpgcheck=0
+# yum makecache
+# yum install -y vsftpd
+# service vsftpd restart
+# chkconfig vsftpd on
+# chkconfig --list vsftpd
+# vim /etc/vsftpd/vsftpd.conf
+anonymous_enable=YES
+
+----
+
+Configurer un serveur HTTP :
+# wget http://station.domain40.example.com.
+# dnf install -y httpd
+# systemctl enable httpd
+# cd /var/www/html
+# wget http://test/test/example.html
+# mv example.html index.html
+# systemctl start httpd
+
+----
+
+Changez la capacité du volume logique nommé lvtest de 10M à 30M. et la taille de la plage flottante doit être comprise entre 25 et 35 :
+# e2fsck -f /dev/vg1/lvm02
+# resize2fs -f /dev/vg1/lvm02
+# mount /dev/vg1/lvm01 /mnt
+# lvreduce -L 1G -n /dev/vg1/lvm02
+# lvdisplay (Verify)
+
+
+
+----------------------------------------------------------------------------------------------------
 Nouveau red hat = nmcli (nmcli device status) ; configuration ==> /etc/NetworkManager/system-connections/ens33.nmconnection
 -----
 
