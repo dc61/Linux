@@ -132,6 +132,20 @@ iface ens192 inet static
   dns-domain test.local
   
 
+
+------------------------------------------------Crontab----------------------------------------------
+
+Planifier l’exécution d’un programme, script sur Linux:
+modifier le fichier crontab : /etc/crontab
+crontab -l : lister les cron en cours
+minute hour day(1-31) month day(1-7) user command          |||||     *	any value ---- - ,	value list separator -----   -	range of values -----   /	step values   
+
+
+-----------------------------------------------------------------------------------------------------
+------------------------------------------=====SECURITE=====-----------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+
 -----------------------------------------------SE Linux----------------------------------------------
 
 ls -Z : contexte
@@ -150,18 +164,6 @@ audit2allow : Utilitaire pour générer des règles SELinux à partir des journa
 
 chcon : Change les contextes de sécurité SELinux pour les fichiers et les répertoires spécifiés.
 
-
-------------------------------------------------Crontab----------------------------------------------
-
-Planifier l’exécution d’un programme, script sur Linux:
-modifier le fichier crontab : /etc/crontab
-crontab -l : lister les cron en cours
-minute hour day(1-31) month day(1-7) user command          |||||     *	any value ---- - ,	value list separator -----   -	range of values -----   /	step values   
-
-
------------------------------------------------------------------------------------------------------
-------------------------------------------=====SECURITE=====-----------------------------------------
------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------Firewalld----------------------------------------------
 
