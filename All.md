@@ -184,9 +184,12 @@ firewall-cmd --permanent --add-port=<numéro de port>/tcp : Ouvre un port TCP sp
 firewall-cmd --permanent --remove-port=<numéro de port>/tcp : Ferme un port TCP spécifique de manière permanente (après un redémarrage).
 
 firewall-cmd --reload : Recharge les règles du pare-feu.
+  
+firewall-cmd --zone=block --add-source=172.25.0.0/16 --permanent : Refuse domain 172.25.0.0/16 to access the server
 
 firewall-cmd --zone=<nom de la zone> --change-interface=<nom de l'interface> : Associe une interface réseau à une zone spécifique.
 
+  
 
 -------------------------------------------------UFW-------------------------------------------------
 
