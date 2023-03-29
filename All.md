@@ -141,12 +141,46 @@ crontab -l : lister les cron en cours
 minute hour day(1-31) month day(1-7) user command          |||||     *	any value ---- - ,	value list separator -----   -	range of values -----   /	step values   
 
 
------------------------------------------------------------------------------------------------------
-------------------------------------------=====SECURITE=====-----------------------------------------
------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+------------------------------------=====SECURITE ET RESEAUX=====------------------------------
+-----------------------------------------------------------------------------------------------
 
 
------------------------------------------------SE Linux----------------------------------------------
+-------------------------------------------nmcli--------------------------------------------
+
+
+nmcli general status : Affiche le statut global de NetworkManager et des connexions réseau.
+
+nmcli device status : Affiche le statut des périphériques réseau et des connexions actives.
+
+nmcli connection show : Affiche les détails des connexions réseau configurées.
+
+nmcli device wifi list : Affiche les réseaux Wi-Fi disponibles.
+
+nmcli device wifi connect SSID password PASSWORD : Connecte à un réseau Wi-Fi spécifique avec le SSID et le mot de passe fournis.
+
+nmcli connection add type ethernet ifname eth0 : Ajoute une connexion Ethernet avec le nom de périphérique spécifié.
+
+nmcli connection modify eth0 ipv4.method manual ipv4.addresses 192.168.1.2/24 ipv4.gateway 192.168.1.1 : Configure une adresse IP statique pour la coEthernet spécifiée.
+
+nmcli connection up eth0 : Active la connexion Ethernet spécifiée.
+
+nmcli connection down eth0 : Désactive la connexion Ethernet spécifiée.
+
+nmcli radio wifi off : Désactive le Wi-Fi sur l'ordinateur.
+
+nmcli device show: Affiche les informations détaillées sur tous les périphériques réseau.
+
+nmcli device set: Modifie les propriétés d'un périphérique réseau spécifique.
+
+nmcli connection add: Ajoute une nouvelle connexion réseau.
+
+nmcli connection modify: Modifie les propriétés d'une connexion réseau spécifique.
+
+nmcli connection delete: Supprime une connexion réseau spécifique.
+
+
+-------------------------------------------SE Linux---------------------------------------------
 
 ls -Z : contexte
 
@@ -186,10 +220,14 @@ firewall-cmd --permanent --remove-port=<numéro de port>/tcp : Ferme un port TCP
 firewall-cmd --reload : Recharge les règles du pare-feu.
   
 firewall-cmd --zone=block --add-source=172.25.0.0/16 --permanent : Refuse domain 172.25.0.0/16 to access the server
-
-firewall-cmd --zone=<nom de la zone> --change-interface=<nom de l'interface> : Associe une interface réseau à une zone spécifique.
-
   
+firewall-cmd --zone=dmz --remove-service=ssh --permanent
+  
+firewall-cmd --zone=dmz --add-service=ssh
+
+firewall-cmd --zone=<nom de la zone> --change-interface=<nom de l interface> : Associe une interface réseau à une zone spécifique.
+
+firewall-cmd --get-zone : Affiche la zone actuelle
 
 -------------------------------------------------UFW-------------------------------------------------
 
