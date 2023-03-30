@@ -186,6 +186,10 @@ ls -Z : contexte
 
 sestatus : Affiche l'état actuel de SELinux.
 
+getsebool -a : Signale où un booléen SELinux particulier ou tous les booléens SELinux sont activés ou désactivés.
+
+semanage boolean -l : Plus de détails sur les booleans.
+
 getenforce : Affiche le mode d'exécution actuel de SELinux (Enforcing, Permissive ou Disabled).
 
 setenforce : Permet de changer le mode d'exécution de SELinux (Enforcing, Permissive ou Disabled).
