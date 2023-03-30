@@ -195,6 +195,7 @@ setsebool exemple_httpd_use_gpg on
 
 semanage boolean -l : Plus de détails sur les booleans.
 
+--
 
 getenforce : Affiche le mode d'exécution actuel de SELinux (Enforcing, Permissive ou Disabled).
 
