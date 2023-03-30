@@ -182,13 +182,19 @@ nmcli connection delete: Supprime une connexion réseau spécifique.
 
 -------------------------------------------SE Linux---------------------------------------------
 
+Barriere supplementaire de sécurité.
+
 ls -Z : contexte
 
 sestatus : Affiche l'état actuel de SELinux.
 
+nano /etc/sysconfig/selinux : pour modifier la ligne SELINUX en Permissive, Enforcing ou Disabled.
+
 getsebool -a : Signale où un booléen SELinux particulier ou tous les booléens SELinux sont activés ou désactivés.
 
 semanage boolean -l : Plus de détails sur les booleans.
+
+setsebool exemple_httpd_use_gpg on
 
 getenforce : Affiche le mode d'exécution actuel de SELinux (Enforcing, Permissive ou Disabled).
 
@@ -201,6 +207,8 @@ restorecon : Réinitialise les contextes de sécurité SELinux pour les fichiers
 audit2allow : Utilitaire pour générer des règles SELinux à partir des journaux d'audit SELinux.
 
 chcon : Change les contextes de sécurité SELinux pour les fichiers et les répertoires spécifiés.
+
+(si SElinux est désactivé et qu'il faut le réactiver, il faut créer un fichier ".autorelabel" a la racine et mettre selinux sur permissive ou enforcing puis redémarrer) <== a voir si toujours utile avec la dernière MAJ
 
 
 ----------------------------------------------Firewalld----------------------------------------------
