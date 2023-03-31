@@ -22,9 +22,9 @@
 
 ----------------------------------------------------------------------------------------------------
 
+systemctl isolate runlevel6.target : Modifie immediatement le runlevel et pour la session en cours
 
-
-
+systemctl set-default runlevel6.target : Modifie le niveau de démarrage par défaut du système (actif au prochain redemmarage)
 
 ----------------------------------------------------------------------------------------------------
 RED HAT
