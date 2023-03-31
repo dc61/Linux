@@ -147,11 +147,13 @@ minute hour day(1-31) month day(1-7) user command          |||||     *	any value
 
 ---------------------------------------------ACL-----------------------------------------------------
 
+
 setfacl -m : ajoute ou modifie des règles ACL pour un fichier ou un répertoire.
 setfacl -x : supprime une règle ACL spécifique pour un fichier ou un répertoire.
 setfacl -b : supprime toutes les règles ACL pour un fichier ou un répertoire.
 getfattr : affiche les attributs étendus pour un fichier ou un répertoire.
 setfattr : définit les attributs étendus pour un fichier ou un répertoire.
+
 
 setfacl: permet de définir des ACL pour un fichier ou un répertoire.
 Exemple : setfacl -m u:jane:rwx myfile (ajoute les droits de lecture, écriture et exécution pour l'utilisateur "jane" sur le fichier "myfile").
