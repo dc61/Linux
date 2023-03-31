@@ -141,6 +141,43 @@ crontab -l : lister les cron en cours
 minute hour day(1-31) month day(1-7) user command          |||||     *	any value ---- - ,	value list separator -----   -	range of values -----   /	step values   
 
 
+
+
+
+
+---------------------------------------------ACL-----------------------------------------------------
+
+setfacl -m : ajoute ou modifie des règles ACL pour un fichier ou un répertoire.
+setfacl -x : supprime une règle ACL spécifique pour un fichier ou un répertoire.
+setfacl -b : supprime toutes les règles ACL pour un fichier ou un répertoire.
+getfattr : affiche les attributs étendus pour un fichier ou un répertoire.
+setfattr : définit les attributs étendus pour un fichier ou un répertoire.
+
+setfacl: permet de définir des ACL pour un fichier ou un répertoire.
+Exemple : setfacl -m u:jane:rwx myfile (ajoute les droits de lecture, écriture et exécution pour l'utilisateur "jane" sur le fichier "myfile").
+
+getfacl: affiche les ACL pour un fichier ou un répertoire.
+Exemple : getfacl myfile (affiche les ACL pour le fichier "myfile").
+
+setfacl -d: définit les ACL par défaut pour un répertoire.
+Exemple : setfacl -d -m u:jane:rwx mydir (ajoute les droits de lecture, écriture et exécution pour l'utilisateur "jane" sur tous les fichiers créés dans le répertoire "mydir").
+
+getfacl -d: affiche les ACL par défaut pour un répertoire.
+Exemple : getfacl -d mydir (affiche les ACL par défaut pour le répertoire "mydir").
+
+setfacl -x: supprime une ACL pour un fichier ou un répertoire.
+Exemple : setfacl -x u:jane myfile (supprime les droits de l'utilisateur "jane" sur le fichier "myfile").
+
+setfacl -b: supprime toutes les ACL pour un fichier ou un répertoire.
+Exemple : setfacl -b myfile (supprime toutes les ACL pour le fichier "myfile").
+
+setfacl -R: applique les ACL récursivement à tous les fichiers et répertoires dans un répertoire.
+Exemple : setfacl -R -m u:jane:rwx mydir (ajoute les droits de lecture, écriture et exécution pour l'utilisateur "jane" sur tous les fichiers et répertoires dans le répertoire "mydir").
+
+getfacl -R: affiche les ACL récursivement pour tous les fichiers et répertoires dans un répertoire.
+Exemple : getfacl -R mydir (affiche les ACL récursivement pour tous les fichiers et répertoires dans le répertoire "mydir").
+
+
 -------------------------------------------------------------------------------------------
 --------------------------------=====SECURITE ET RESEAUX=====------------------------------
 -------------------------------------------------------------------------------------------
