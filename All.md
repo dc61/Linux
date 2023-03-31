@@ -157,6 +157,7 @@ setfacl -b : supprime toutes les règles ACL pour un fichier ou un répertoire.
 getfattr : affiche les attributs étendus pour un fichier ou un répertoire.
 
 setfattr : définit les attributs étendus pour un fichier ou un répertoire.
+
 --
 
 setfacl: permet de définir des ACL pour un fichier ou un répertoire.
