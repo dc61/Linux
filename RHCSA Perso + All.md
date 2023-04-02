@@ -402,45 +402,37 @@ C’est à dire les applications réseaux avec des ports ouverts, celles qui ex�
 Pour vous y aider, Apparmor possède la commande aa-unconfined qui liste les applications non confinés et qu’il faut en priorité configurer:
 aa-unconfined /usr/sbin/nginx
 
--------------------------------------------------CONTAINER-------------------------------------------------
+-------------------------------------------------CONTAINER PODMAN-------------------------------------------------
   
-  podman run: Cette commande est utilisée pour exécuter un conteneur. Par exemple, pour exécuter un conteneur de la distribution Alpine Linux, vous pouvez utiliser la commande suivante :
-arduino
-Copy code
+podman run: Cette commande est utilisée pour exécuter un conteneur. Par exemple, pour exécuter un conteneur de la distribution Alpine Linux, vous pouvez utiliser la commande suivante :
 podman run -it alpine /bin/sh
+  
 podman ps: Cette commande affiche une liste des conteneurs en cours d'exécution. Par exemple, pour afficher la liste des conteneurs en cours d'exécution sur votre système, vous pouvez utiliser la commande suivante :
-Copy code
 podman ps
+  
 podman images: Cette commande affiche une liste des images de conteneurs disponibles sur votre système. Par exemple, pour afficher la liste des images disponibles, vous pouvez utiliser la commande suivante :
-Copy code
 podman images
+  
 podman stop: Cette commande est utilisée pour arrêter un conteneur en cours d'exécution. Par exemple, pour arrêter un conteneur avec l'ID 123abc, vous pouvez utiliser la commande suivante :
-arduino
-Copy code
 podman stop 123abc
+  
 podman start: Cette commande est utilisée pour démarrer un conteneur arrêté. Par exemple, pour démarrer un conteneur avec l'ID 123abc, vous pouvez utiliser la commande suivante :
-sql
-Copy code
 podman start 123abc
+  
 podman restart: Cette commande est utilisée pour redémarrer un conteneur en cours d'exécution. Par exemple, pour redémarrer un conteneur avec l'ID 123abc, vous pouvez utiliser la commande suivante :
-Copy code
 podman restart 123abc
-podman rm: Cette commande est utilisée pour supprimer un conteneur. Par exemple, pour supprimer un conteneur avec l'ID 123abc, vous pouvez utiliser la commande suivante :
-bash
-Copy code
+  
+podman rm: Cette commande est utilisée pour supprimer un conteneur. Par exemple, pour supprimer un conteneur avec l'ID 123abc, vous pouvez utiliser la commande suivante 
 podman rm 123abc
+  
 podman rmi: Cette commande est utilisée pour supprimer une image de conteneur. Par exemple, pour supprimer l'image my-image:latest, vous pouvez utiliser la commande suivante :
-arduino
-Copy code
 podman rmi my-image:latest
+  
 podman build: Cette commande est utilisée pour créer une image de conteneur à partir d'un fichier Dockerfile ou d'une archive de contexte de build. Par exemple, pour créer une image à partir d'un Dockerfile dans le répertoire courant, vous pouvez utiliser la commande suivante :
-arduino
-Copy code
 podman build -t my-image:latest .
+  
 podman commit: Cette commande est utilisée pour créer une nouvelle image de conteneur à partir d'un conteneur en cours d'exécution. Par exemple, pour créer une nouvelle image à partir d'un conteneur avec l'ID 123abc, vous pouvez utiliser la commande suivante :
-arduino
-Copy code
 podman commit 123abc my-new-image:latest
   
-podman exporavec l'ID 123abc dans un fichier my-container.tar, vous pouvez utiliser la commande suivante :
-ner.t
+podman export: Cette commande est utilisée pour exporter le système de fichiers d'un conteneur dans une archive tarball. Par exemple, pour exporter le système de fichiers d'un conteneur avec l'ID 123abc dans un fichier my-container.tar, vous pouvez utiliser la commande suivante :
+podman export 123abc > my-container.tar
