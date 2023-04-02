@@ -258,6 +258,12 @@ chcon : Change les contextes de sécurité SELinux pour les fichiers et les rép
 
 (si SElinux est désactivé et qu'il faut le réactiver, il faut créer un fichier ".autorelabel" a la racine et mettre selinux sur permissive ou enforcing puis redémarrer) <== a voir si toujours utile avec la dernière MAJ
 
+Enforcing : c'est le mode par défaut. Dans ce mode, SELinux impose strictement les politiques de sécurité définies. Si une action n'est pas autorisée par la politique, elle sera bloquée et une alerte sera enregistrée dans les journaux de sécurité.
+
+Permissive : dans ce mode, SELinux ne bloque pas les actions qui ne sont pas autorisées par la politique de sécurité, mais il enregistre toujours une alerte dans les journaux de sécurité. Cela permet aux administrateurs de comprendre quelles actions seraient bloquées s'ils passent en mode Enforcing.
+
+Disabled : dans ce mode, SELinux est complètement désactivé et ne fournit aucune sécurité supplémentaire. Toutes les actions sont autorisées sans restriction.
+
 
 ----------------------------------------------Firewalld----------------------------------------------
 
