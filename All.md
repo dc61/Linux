@@ -15,11 +15,12 @@
 
 
 ----------------------------------------------------------------------------------------------------
+dans les fichiers cachés de /root,
+nano .bash_profile (red hat),  .bash_rc pour (deb)? 
 
-
-
-
-
+alias f='/home/user/scripts/t.sh'
+chargé les nouvelles configurations en tapant source ~/.bash_profile
+ajouter le chemin d'accès complet de votre script dans la définition de l'alias
 ----------------------------------------------------------------------------------------------------
 
 systemctl isolate runlevel6.target : Modifie immediatement le runlevel et pour la session en cours
