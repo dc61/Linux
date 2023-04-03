@@ -49,9 +49,12 @@ and add below line : /dev/sdb5 swap swap defaults 0 0
 
 ----
 
+/etc/login.defs (parametres des users)
 Créer un user Tom avec un Id de 1111 et modifier son mdp
-useradd -u 1111 -p mo3àH(Gd -m tom
-
+useradd -u 1111 -p password -m(home directory) tom 
+usermod -aG profs tom 
+groupadd
+groupmod
 ----
 
 Installez un serveur FTP et demandez un téléchargement anonyme à partir du catalogue /var/ftp/pub :
