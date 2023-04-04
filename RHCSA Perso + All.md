@@ -109,7 +109,7 @@ UUID="paste the UUID of /dev/vg01/lv01 here" /mnt/data ext4 defaults 0 0
 # mount -a
 
 ----------------------------------------------------------------------------------------------------
-
+Use nmtui !
 Nouveau red hat = nmcli (nmcli device status) ; configuration ==> /etc/NetworkManager/system-connections/ens33.nmconnection
 
 -----
