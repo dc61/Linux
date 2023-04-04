@@ -10,9 +10,11 @@
 
 ----------------------------------------------------------------------------------------------------
 
+Ajouter un nouveau référentiel de packages à DNF : 
+dnf config-manager --add-repo="file:///repo/BaseOS"
 
-
-
+Voir les repolist : 
+dnf repolist
 
 ----------------------------------------------------------------------------------------------------
 dans les fichiers cachés de /root,
