@@ -25,14 +25,18 @@ nano .bash_profile (red hat),  .bash_rc pour (deb)?
 alias f='/home/user/scripts/t.sh'
 chargé les nouvelles configurations en tapant source ~/.bash_profile
 ajouter le chemin d'accès complet de votre script dans la définition de l'alias
+
+------------------
 ----------------------------------------------------------------------------------------------------
 
 systemctl isolate runlevel6.target : Modifie immediatement le runlevel et pour la session en cours
 
 systemctl set-default runlevel6.target : Modifie le niveau de démarrage par défaut du système (actif au prochain redemmarage)
 
+---------------------------------------------
 ----------------------------------------------------------------------------------------------------
 RED HAT
+
 
 Trouvez les fichiers appartenant à Tom et copiez-les dans le catalogue : /opt/dir 
 find / -user Alice -type f -exec cp {} /opt/dir \;
