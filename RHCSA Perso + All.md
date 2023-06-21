@@ -243,6 +243,7 @@ nmcli connection delete: Supprime une connexion réseau spécifique.
 
 Barriere supplementaire de sécurité.
 
+troubleshooting => setenforce permissive
 
 sestatus : Affiche l'état actuel de SELinux.
 
