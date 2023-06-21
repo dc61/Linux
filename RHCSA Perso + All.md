@@ -244,6 +244,8 @@ nmcli connection delete: Supprime une connexion réseau spécifique.
 Barriere supplementaire de sécurité.
 
 troubleshooting => setenforce permissive
+ou setenforce 1 ou 0
+troubleshooting => journalctl | grep sealert
 
 sestatus : Affiche l'état actuel de SELinux.
 
