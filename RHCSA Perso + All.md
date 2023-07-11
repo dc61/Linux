@@ -12,8 +12,23 @@ baseurl=file:///repo/BaseOS
 
 gpgcheck=0
 
-----------------------------------
----------------------------------------------------------------------------------------------------
+---------------------------------
+
+systemctl set-default graphical.target
+
+------------------------------------------------
+
+tuned-adm profile throughput-performance
+
+--------------------------------------------
+
+rendre le journal systemd persistant:
+
+nano /etc/systemd/journald.conf
+storage=persistant
+systemctl restart systemd-journald
+
+-------
 
 Ajouter un nouveau référentiel de packages à DNF : 
 dnf config-manager --add-repo="file:///repo/BaseOS"
