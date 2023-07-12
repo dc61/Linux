@@ -447,6 +447,8 @@ aa-unconfined /usr/sbin/nginx
 -------------------------------------------------CONTAINER PODMAN-------------------------------------------------
 
 podman login registry.redhat.io
+
+podman exec -it <nom_conteneur> </bin/bash>
   
 podman run: Cette commande est utilisée pour exécuter un conteneur. Par exemple, pour exécuter un conteneur de la distribution Alpine Linux, vous pouvez utiliser la commande suivante :
 podman run -it alpine /bin/sh
