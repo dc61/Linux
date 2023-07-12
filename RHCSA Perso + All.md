@@ -445,6 +445,8 @@ Pour vous y aider, Apparmor possède la commande aa-unconfined qui liste les app
 aa-unconfined /usr/sbin/nginx
 
 -------------------------------------------------CONTAINER PODMAN-------------------------------------------------
+
+podman login registry.redhat.io
   
 podman run: Cette commande est utilisée pour exécuter un conteneur. Par exemple, pour exécuter un conteneur de la distribution Alpine Linux, vous pouvez utiliser la commande suivante :
 podman run -it alpine /bin/sh
