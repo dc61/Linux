@@ -4,13 +4,24 @@
 
 ----------------------------------------------------------------------------------------------------
 ----------------------------------
-[Base]
 
+mkdir /blob
+
+cp /run/media/roo/centos546-4645/AppStream /blob
+(ou /mnt/)
+
+nano Baseos.repo
+
+[BaseOS]
 name=BaseOs
-
-baseurl=file:///repo/BaseOS
-
+baseurl=file:///blob/BaseOS/
+enabled=1
 gpgcheck=0
+
+pareil pour [AppStream]
+
+yum clean all
+yum install nano (test)
 
 ---------------------------------
 
