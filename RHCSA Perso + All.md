@@ -5,33 +5,33 @@
 ----------------------------------------------------------------------------------------------------
 ----------------------------------
 
-- mkdir /blob
+# mkdir /blob
 
 
-- cp /run/media/roo/centos546-4645/AppStream /blob
-(ou /mnt/)
+# cp /run/media/roo/centos546-4645/AppStream /blob
+# (ou /mnt/)
 
 
-- nano Baseos.repo
+# nano Baseos.repo
 
 
-- [BaseOS]
+# [BaseOS]
 
-name=BaseOs
+# name=BaseOs
 
-baseurl=file:///blob/BaseOS/
+# baseurl=file:///blob/BaseOS/
 
-enabled=1
+# enabled=1
 
-gpgcheck=0
-
-
-- pareil pour [AppStream]
+# gpgcheck=0
 
 
-- yum clean all
+# pareil pour [AppStream]
 
-- yum install nano (test)
+
+# yum clean all
+
+# yum install nano (test)
 
 ---------------------------------
 
