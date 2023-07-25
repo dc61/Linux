@@ -70,7 +70,14 @@ Trouvez les fichiers appartenant à Tom et copiez-les dans le catalogue : /opt/
 find / -user Alice -type f -exec cp {} /opt/dir \;
 ----
 
-Create une partition pour taille donnée :
+LVM 
+
+1primaire
+(2extented
+si utilisé==>3logical, que une extented, logical=infini)
+
+----
+Create une partition swap pour taille donnée :
 #fdisk /dev/sdb
 #n
 #+2G
