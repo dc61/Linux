@@ -30,9 +30,18 @@ fdisk /dev/sdb
 n (mettre tout par defaut)
 t (et mettre en lvm)
 w
+
 pvcreate /dev/sdb1
 vgcreate vgnom /dev/sdb1
 lvcreate -n lvnom -L 2G vgnom
+
+mkfs.ext4 /dev/vgnom/lvnom
+mkdir /blob
+nano /etc/fstab
+mount -a
+
+lvextend -L +1G /dev/vgnom/lvnom
+lvreduce -L -1G /dev/vgnom/lvnom
 ---------------------------------
 systemctl set-default graphical.target
 
