@@ -41,7 +41,16 @@ nano /etc/fstab
 mount -a
 
 lvextend -L +1G /dev/vgnom/lvnom
-lvreduce -L -1G /dev/vgnom/lvnom
+resize2fs /dev/vgnom/lvnom   OU   xfs_growfs pour XFS
+
+dans fstab, #le peripherique
+umount /nomDuFichier
+e2fsck -f /dev/vgnom/lvnom (pour verifier l'integrité, detecter et corriger les erreurs)
+resize /dev/vgnom/lvnom 1G
+lvreduce -L -1G /dev/vgnom/lvnom (si la taille était de 30G par ex, il passe a 1G)
+dans fstab, enlever le #
+mount -a
+
 ---------------------------------
 systemctl set-default graphical.target
 
