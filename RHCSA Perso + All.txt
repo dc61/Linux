@@ -24,6 +24,14 @@ YUM REPO
 
 ---------------------------------
 
+LVM
+
+fdisk /dev/sdb
+n (mettre tout par defaut)
+t (et mettre en lvm)
+w
+
+---------------------------------
 systemctl set-default graphical.target
 
 ------------------------------------------------
