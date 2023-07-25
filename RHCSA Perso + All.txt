@@ -30,7 +30,9 @@ fdisk /dev/sdb
 n (mettre tout par defaut)
 t (et mettre en lvm)
 w
-
+pvcreate /dev/sdb1
+vgcreate vgnom /dev/sdb1
+lvcreate -n lvnom -L 2G vgnom
 ---------------------------------
 systemctl set-default graphical.target
 
