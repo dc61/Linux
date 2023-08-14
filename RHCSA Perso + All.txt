@@ -490,6 +490,8 @@ Pour vous y aider, Apparmor possède la commande aa-unconfined qui liste les app
 aa-unconfined /usr/sbin/nginx
 
 -------------------------------------------------CONTAINER PODMAN-------------------------------------------------
+conteneur : comme un sorte d'application executable qui contient tous les éléments nécessaires pour exécuter une application, notamment les bibliothèques, les outils système, le code et le runtime
+image : paquet qui contient toutes les dependances
 
 podman login registry.redhat.io
 
