@@ -493,6 +493,8 @@ aa-unconfined /usr/sbin/nginx
 conteneur : comme un sorte d'application executable qui contient tous les éléments nécessaires pour exécuter une application, notamment les bibliothèques, les outils système, le code et le runtime
 image : paquet qui contient toutes les dependances
 
+
+
 podman login registry.redhat.io
 
 podman exec -it <nom_conteneur> </bin/bash>
@@ -523,9 +525,46 @@ podman rmi my-image:latest
   
 podman build: Cette commande est utilisée pour créer une image de conteneur à partir d'un fichier Dockerfile ou d'une archive de contexte de build. Par exemple, pour créer une image à partir d'un Dockerfile dans le répertoire courant, vous pouvez utiliser la commande suivante :
 podman build -t my-image:latest .
-  
+podman build -t my-image . (le point est le repertoire ou l'on est, ou dedans il y a notre containerfile avec les instructions, exemple: 
+
+# Utiliser une image de base
+FROM fedora:latest
+
+# Installer des paquets
+RUN dnf install -y package1 package2
+
+# Copier des fichiers dans l'image
+COPY source-file destination-path
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Commande à exécuter lors du démarrage du conteneur
+CMD ["command-to-run"]
+
+
 podman commit: Cette commande est utilisée pour créer une nouvelle image de conteneur à partir d'un conteneur en cours d'exécution. Par exemple, pour créer une nouvelle image à partir d'un conteneur avec l'ID 123abc, vous pouvez utiliser la commande suivante :
 podman commit 123abc my-new-image:latest
   
 podman export: Cette commande est utilisée pour exporter le système de fichiers d'un conteneur dans une archive tarball. Par exemple, pour exporter le système de fichiers d'un conteneur avec l'ID 123abc dans un fichier my-container.tar, vous pouvez utiliser la commande suivante :
 podman export 123abc > my-container.tar
+
+AUTO STARTING USER CONTAINER 
+
+sudo useradd lisa; sudo passwd lisa
+sudo loginctl enable-linger lisa
+ssh lisa@localhost
+mkdir -p ~/.config/systemd/user; cd ~/.config/systemd/user
+podman run -d --name mynginx -p 8180:80 nginx
+podamn ps
+podman generate systemd --name mynginx --files --new    (podman generate --new = créer un nouveau container quand systemd unit demarre, supprime le container quand l'unit est stopped)
+nano container-nginx.service  
+WantedBy=default.target
+systemctl --user daemon-reload
+systemctl --user enable container-mynginx.service
+systemctl --user status container-mynginx.service
+
+
+A REVISER 
+man podman-generate
+man podman-generate-systemd
