@@ -32,7 +32,7 @@ t (et mettre en lvm)
 w
 
 pvcreate /dev/sdb1
-vgcreate vgnom /dev/sdb1
+vgcreate vgnom /dev/sdb1     (-s 128K pour modifier l'extent car 4M par defaut)
 lvcreate -n lvnom -L 2G vgnom
 
 mkfs.ext4 /dev/vgnom/lvnom
@@ -46,7 +46,7 @@ resize2fs /dev/vgnom/lvnom   OU   xfs_growfs pour XFS
 dans fstab, #le peripherique
 umount /nomDuFichier
 e2fsck -f /dev/vgnom/lvnom (pour verifier l'integrité, detecter et corriger les erreurs)
-resize /dev/vgnom/lvnom 1G
+resize2fs /dev/vgnom/lvnom 1G
 lvreduce -L -1G /dev/vgnom/lvnom (si la taille était de 30G par ex, il passe a 1G)
 dans fstab, enlever le #
 mount -a
