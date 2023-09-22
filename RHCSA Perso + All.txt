@@ -266,6 +266,8 @@ Exemple : getfacl -R mydir (affiche les ACL récursivement pour tous les fichier
 
 
 ---------------------------------------------netstat---------------------------------
+netstat -b (voir le service exact, sur windows)
+netstat -tuln -p (voir le service exact, sur linux)
 
 netstat -p -v -n -a
 ss -tua
