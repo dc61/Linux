@@ -17,7 +17,7 @@ YUM REPO
 # enabled=1
 # gpgcheck=0
 
-# pareil pour [AppStream]
+pareil pour [AppStream]
 
 # yum clean all
 # yum install nano (test)
