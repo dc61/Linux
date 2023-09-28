@@ -101,8 +101,10 @@ find / -user Alice -type f -exec cp {} /opt/dir \;
 LVM 
 
 1primaire
-(2extented
-si utilisé==>3logical, que une extented, logical=infini)
+2extented ( il agit comme un conteneur pour des volumes logiques. Un volume étendu est utilisé pour contourner la limitation du nombre de partitions primaires sur un système MBR )
+si utilisé==>
+3logical; donc extented=une seule, logical=infini
+Les volumes logiques(3) sont crée à l'intérieur des volumes étendus(2), et sont montés et utilisés comme des partitions de disque classiques, mais ils bénéficient de la flexibilité et de la gestion offertes par LVM.
 
 ----
 Create une partition swap pour taille donnée :
@@ -126,6 +128,8 @@ useradd -u 1111 -p password -m(home directory) tom
 usermod -aG profs tom 
 groupadd
 groupmod
+chown blop:plop /etc
+chmod 750 /tmp/script_test.sh   (-R pour recursive)
 ----
 
 Installez un serveur FTP et demandez un téléchargement anonyme à partir du catalogue /var/ftp/pub :
