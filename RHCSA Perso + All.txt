@@ -94,7 +94,7 @@ systemctl set-default runlevel6.target : Modifie le niveau de démarrage par dé
 RED HAT
 
 
-Trouvez les fichiers appartenant à Tom et copiez-les dans le catalogue : /opt/dir 
+Trouvez les fichiers appartenant à Alice et copiez-les dans le catalogue : /opt/dir 
 find / -user Alice -type f -exec cp {} /opt/dir \;
 ----
 
